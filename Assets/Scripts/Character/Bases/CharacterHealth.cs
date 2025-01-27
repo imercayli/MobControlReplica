@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
@@ -9,9 +10,10 @@ public class CharacterHealth : MonoBehaviour
     private bool isDeath;
     private float health;
     [SerializeField] private float maxHealth;
-    void Start()
+    private void OnEnable()
     {
         health = maxHealth;
+        isDeath = false;
     }
 
     public void TakeDamage(float damageAmount)

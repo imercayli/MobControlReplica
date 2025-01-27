@@ -16,13 +16,16 @@ public class CanonMovement : MonoBehaviour
 
     [SerializeField] private Transform playerSpawnPoint;
     [SerializeField] private SkinnedMeshRenderer skinnedMeshRenderer;
-  public  float animationDuration = 0.15f;  // Time to reach 100
-  public float overlapDelay = 0.05f;       // Overlap delay between blendshapes
+  public  float animationDuration = 0.15f; 
+  public float overlapDelay = 0.05f;
+  
+  public Transform[] wheels;
+  public float wheelRotationSpeed = 100f;
+  
     // Start is called before the first frame update
     void Start()
     {
         TouchManager.Instance.onTouchMoved += OnTouchMoved;
-       // AnimateBlendShapesWithOverlap();
     }
 
     private void OnTouchMoved(TouchInput touch)
@@ -34,6 +37,8 @@ public class CanonMovement : MonoBehaviour
         finalPosition.x = Mathf.Clamp(finalPosition.x, -xSideLimit, xSideLimit);
 
         canonObject.localPosition = finalPosition;
+
+        RotateWheels(movementDelta.x);
 
         if (Time.time > playerSpawnTimer)
         {
@@ -51,10 +56,11 @@ public class CanonMovement : MonoBehaviour
 
     private void SpawnPlayer()
     {
-        //AnimateBlendShapesWithOverlap();
-        CharacterMovement characterMovement = CurrencyFlowIconPool.Instance.GetPlayer();
-        characterMovement.transform.position = playerSpawnPoint.position;
-        characterMovement.transform.rotation = playerSpawnPoint.rotation;
+        Player player = FindObjectOfType<PlayerFactory>()
+            .CreateInstance(playerSpawnPoint.position, playerSpawnPoint.rotation);
+        player.transform.position = playerSpawnPoint.position;
+        player.transform.rotation = playerSpawnPoint.rotation;
+        player.GetComponent<CharacterMovement>().SetTraget(FindObjectOfType<EnemyFortress>().transform.position);
     }
     
     void AnimateBlendShapesWithOverlap()
@@ -88,5 +94,14 @@ public class CanonMovement : MonoBehaviour
 
         sequence.AppendCallback(SpawnPlayer);
         //  sequence.SetLoops(-1, LoopType.Restart); // Infinite looping
+    }
+    
+    private void RotateWheels(float movementAmount)
+    {
+        float rotationAngle = movementAmount * wheelRotationSpeed;
+        foreach (var wheel in wheels)
+        {
+            wheel.Rotate(Vector3.up, rotationAngle);
+        }
     }
 }

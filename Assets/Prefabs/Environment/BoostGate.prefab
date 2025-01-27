@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8760882403023035351}
   - component: {fileID: 6507585605514160842}
   - component: {fileID: 8365104536372320567}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: AmountText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -180,7 +180,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3717623071979454725}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Borders
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -216,7 +216,7 @@ GameObject:
   - component: {fileID: 4067414242136132694}
   - component: {fileID: 3908444438370498199}
   - component: {fileID: 8064234397952662242}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: LeftBorder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -299,7 +299,7 @@ GameObject:
   - component: {fileID: 3154554038040419017}
   - component: {fileID: 6657005847777648743}
   - component: {fileID: 5366178616386166417}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: RightBorder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -382,7 +382,7 @@ GameObject:
   - component: {fileID: 3609341387133202753}
   - component: {fileID: 4752923168411327065}
   - component: {fileID: 8349898546074788556}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: BoostGate
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -455,7 +455,7 @@ GameObject:
   - component: {fileID: 1066414311320491821}
   - component: {fileID: 5330290736384554560}
   - component: {fileID: 7545730496607366188}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: BottomBorder
   m_TagString: Untagged
   m_Icon: {fileID: 0}

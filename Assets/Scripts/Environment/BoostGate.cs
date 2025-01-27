@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Lean.Pool;
 using TMPro;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class BoostGate : MonoBehaviour,IPlayerInteractable
 {
@@ -50,14 +51,16 @@ public class BoostGate : MonoBehaviour,IPlayerInteractable
     {
         if(player.GetComponent<CharacterInteraction>().createdBoostGate == this) return;
 
-        for (int i = 0; i < Amount; i++)
+        for (int i = 0; i < Amount-1; i++)
         {
-            CharacterMovement xCharacterMovement = CurrencyFlowIconPool.Instance.GetPlayer();
-            xCharacterMovement.transform.position = player.transform.position;
-            xCharacterMovement.transform.rotation = player.transform.rotation;
-            xCharacterMovement.GetComponent<CharacterInteraction>().createdBoostGate = this;
+            Player newPlayer = FindObjectOfType<PlayerFactory>()
+                .CreateInstance(player.transform.position, player.transform.rotation);
+            newPlayer.GetComponent<CharacterMovement>().
+                SetTraget(FindObjectOfType<EnemyFortress>().transform.position);
+            newPlayer.GetComponent<CharacterInteraction>().createdBoostGate = this;
+
         }
             
-        LeanPool.Despawn(player);
+      //  LeanPool.Despawn(player);
     }
 }

@@ -25,6 +25,7 @@ public class GameManager : MonoSingleton<GameManager>
     {
         this.isGameSucceed = isGameSucceed;
         OnGameOver?.Invoke(isGameSucceed);
+        Debug.Log("over");
     }
 
     public void Revive()

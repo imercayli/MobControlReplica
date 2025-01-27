@@ -8,7 +8,6 @@ public class PlayerInteraction : CharacterInteraction
    {
       base.OnTriggerEnter(other);
 
-      Debug.Log(999);
       if (other.TryGetComponent(out IPlayerInteractable playerInteractable))
       {
          playerInteractable.Interact(GetComponent<Player>());
