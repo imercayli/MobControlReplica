@@ -8,7 +8,7 @@ public class CounterBoxObstacle : ObstacleBase
     [SerializeField] private int boxHealthAmount;
     [SerializeField] private TextMeshPro boxHealthAmountText;
    
-    void Start()
+    protected virtual void Start()
     {
         SetHealthText();
     }
@@ -30,6 +30,11 @@ public class CounterBoxObstacle : ObstacleBase
         SetHealthText();
         
         if(boxHealthAmount<=0)
-            Destroy(gameObject);
+            Die();
+    }
+
+    protected virtual void Die()
+    {
+        Destroy(gameObject);
     }
 }

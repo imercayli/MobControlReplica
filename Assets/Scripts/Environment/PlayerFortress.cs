@@ -6,6 +6,6 @@ public class PlayerFortress : MonoBehaviour,IEnemyInteractable
 {
     public void Interact(Enemy enemy)
     {
-        GameManager.Instance.GameOver(false);
+        ServiceSystem.GetService<GameService>().GameOver(false);
     }
 }

@@ -22,9 +22,8 @@ public class UIManager : MonoSingleton<UIManager>
 
     private void Start()
     {
-        GameManager.Instance.OnGameStart += OnGameStart;
-        GameManager.Instance.OnGameOver += OnGameFinish;
-        GameManager.Instance.OnRevive += OnRevive;
+        ServiceSystem.GetService<GameService>().OnGameStart += OnGameStart;
+        ServiceSystem.GetService<GameService>().OnGameOver += OnGameFinish;
     }
 
     private void OnGameStart()
@@ -48,13 +47,4 @@ public class UIManager : MonoSingleton<UIManager>
         }
         
     }
-
-    private void OnRevive()
-    {
-        GamePlayCanvas.gameObject.SetActive(true);
-        GameOverFailCanvas.gameObject.SetActive(false);
-    }
-
-
-
 }

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4751434700175278496}
   - component: {fileID: 4585070270063239647}
   - component: {fileID: 8036099444584221967}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Spline
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -116,14 +116,14 @@ MonoBehaviour:
     useClippedPercent: 0
     keys: []
   _clipFromSample:
-    position: {x: 0.0030983686, y: 0.78311807, z: 12.196709}
+    position: {x: 0.0030983686, y: 0.78311807, z: 7.7167087}
     up: {x: 0, y: 1, z: 0}
     forward: {x: -0.00006656284, y: 0.0065978933, z: 0.99997824}
     color: {r: 1, g: 1, b: 1, a: 1}
     size: 1
     percent: 0
   _clipToSample:
-    position: {x: 4.371625, y: 0.7563927, z: 63.576183}
+    position: {x: 4.371625, y: 0.7563927, z: 59.096184}
     up: {x: 0, y: 1, z: 0}
     forward: {x: -0.81373054, y: -0.034917425, z: 0.5801925}
     color: {r: 1, g: 1, b: 1, a: 1}
@@ -784,7 +784,7 @@ GameObject:
   - component: {fileID: 2896609502239280956}
   - component: {fileID: 1634875484932375936}
   - component: {fileID: 5582225142431104268}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Exit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1059,7 +1059,7 @@ GameObject:
   - component: {fileID: 1341953091253052991}
   - component: {fileID: 4258556281945493148}
   - component: {fileID: 5167553833762243010}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1143,8 +1143,7 @@ GameObject:
   - component: {fileID: 2574786918965752643}
   - component: {fileID: 316850097283953030}
   - component: {fileID: 8012769599399885169}
-  - component: {fileID: 7953412640046340771}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Enter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1385,29 +1384,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &7953412640046340771
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6125182875110092724}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Radius: 1.3
-  m_Height: 1
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &6820116360037164932
 GameObject:
   m_ObjectHideFlags: 0
@@ -1419,7 +1395,7 @@ GameObject:
   - component: {fileID: 6039874228024937632}
   - component: {fileID: 7565788285671225984}
   - component: {fileID: 1242993130949665441}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1491,6 +1467,128 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &7074165998236345803
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3576986401649266007}
+  - component: {fileID: 4430215144589302570}
+  - component: {fileID: 3632654541840888992}
+  - component: {fileID: 4753359766873969881}
+  - component: {fileID: 335018089379583254}
+  m_Layer: 0
+  m_Name: Cube
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &3576986401649266007
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7074165998236345803}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0, z: 29.129}
+  m_LocalScale: {x: 1, y: 1, z: 38.541195}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5782843589237681938}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!33 &4430215144589302570
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7074165998236345803}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!23 &3632654541840888992
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7074165998236345803}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &4753359766873969881
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7074165998236345803}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!208 &335018089379583254
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7074165998236345803}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &7460040468759526187
 GameObject:
   m_ObjectHideFlags: 0
@@ -1500,7 +1598,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5126808798225200462}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ExitPoint
   m_TagString: SplineExit
   m_Icon: {fileID: 0}
@@ -1533,8 +1631,8 @@ GameObject:
   - component: {fileID: 5782843589237681938}
   - component: {fileID: 539805272278775613}
   - component: {fileID: 2478895731848437572}
-  - component: {fileID: 2599929781187330675}
-  m_Layer: 0
+  - component: {fileID: 4052941738201982099}
+  m_Layer: 6
   m_Name: TubePortal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1557,6 +1655,7 @@ Transform:
   - {fileID: 1055701043814559299}
   - {fileID: 7509995456846292329}
   - {fileID: 289276151276085876}
+  - {fileID: 3576986401649266007}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &539805272278775613
@@ -5480,9 +5579,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   exitPoint: {fileID: 5126808798225200462}
+  enterPointMesh: {fileID: 289276151276085876}
   teleportTime: 2
---- !u!136 &2599929781187330675
-CapsuleCollider:
+--- !u!65 &4052941738201982099
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -5499,11 +5599,9 @@ CapsuleCollider:
   m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.75
-  m_Height: 1
-  m_Direction: 1
-  m_Center: {x: 0, y: 1.39, z: 0}
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 2}
+  m_Center: {x: 0, y: 1.47, z: 0}
 --- !u!1 &8805371443497994017
 GameObject:
   m_ObjectHideFlags: 0
@@ -5513,7 +5611,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 572979762507824131}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Entrance
   m_TagString: SplineEntrance
   m_Icon: {fileID: 0}

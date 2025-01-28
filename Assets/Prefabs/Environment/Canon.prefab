@@ -185,7 +185,7 @@ MonoBehaviour:
   canonObject: {fileID: 2442181247408059393}
   xMovementSpeed: 5
   xSideLimit: 5
-  playerSpawnRate: 1
+  playerSpawnRate: 0.75
   playerSpawnPoint: {fileID: 7452406028898511826}
   skinnedMeshRenderer: {fileID: 7810110773025655800}
   animationDuration: 0.06

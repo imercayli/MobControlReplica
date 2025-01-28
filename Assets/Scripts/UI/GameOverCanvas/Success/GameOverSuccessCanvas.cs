@@ -31,9 +31,4 @@ public class GameOverSuccessCanvas : MonoBehaviour
         continueButton.interactable = false;
     }
 
-    private void FlowFinish()
-    {
-        GameManager.Instance.LoadScene();
-    }
-
 }

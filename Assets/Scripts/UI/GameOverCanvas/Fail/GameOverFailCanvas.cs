@@ -24,24 +24,13 @@ public class GameOverFailCanvas : MonoBehaviour
     // Start is called before the first frame update
     void OnEnable()
     {
-        if (!GameManager.Instance.IsRevived)
-        {
-            ReviveGroup.SetActive(true);
-            FailGroup.SetActive(false);
-            reviveButton.onClick.AddListener(OnReviveButtonTap);
-            reviveText.transform.DOScale(1.25f, 1f).SetLoops(-1, LoopType.Yoyo);
-            noThanksButton.onClick.AddListener(OnThanksButtonTap);
-            noThanksButton.gameObject.SetActive(false);
-            startTime = Time.time;
-            isCountDown = true;
-        }
-        else
-        {
-            FailGroup.SetActive(true);
-            ReviveGroup.SetActive(false);
-            continueButton.onClick.AddListener(OnContinueButtonTap);
-        }
-       
+        ReviveGroup.SetActive(true);
+        FailGroup.SetActive(false);
+        reviveText.transform.DOScale(1.25f, 1f).SetLoops(-1, LoopType.Yoyo);
+        noThanksButton.onClick.AddListener(OnThanksButtonTap);
+        noThanksButton.gameObject.SetActive(false);
+        startTime = Time.time;
+        isCountDown = true;
     }
 
     private void Update()
@@ -71,22 +60,15 @@ public class GameOverFailCanvas : MonoBehaviour
             noThanksButton.gameObject.SetActive(true);
         }
     }
-    private void OnReviveButtonTap()
-    {
-        isCountDown = false;
-        reviveText.transform.DOKill();
-        GameManager.Instance.Revive();
-    }
-
     private void OnThanksButtonTap()
     {
-        isCountDown = false;
-        reviveText.transform.DOKill();
-        GameManager.Instance.LoadScene();
+        // isCountDown = false;
+        // reviveText.transform.DOKill();
+        // GameManager.Instance.LoadScene();
     }
-
+    
     private void OnContinueButtonTap()
     {
-        GameManager.Instance.LoadScene();
+       // GameManager.Instance.LoadScene();
     }
 }

@@ -41,7 +41,7 @@ public abstract class CharacterBase : MonoBehaviour
         CharacterMovement.SetMovementActivation(false);
         CharacterInteraction.SetInteractionActivation(false);
         CharacterAnimator.SetTrigger(AnimationKey.Death);
-        transform.DOMoveY(transform.position.y - 2, 3f).OnComplete((() =>
+        transform.DOMoveY(transform.position.y - 2, 3f).SetDelay(1.25f).OnComplete((() =>
         {
             LeanPool.Despawn(this);
         }));

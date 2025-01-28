@@ -3,16 +3,17 @@ using System.Collections;
 using System.Collections.Generic;
 using Lean.Pool;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class CharacterInteraction : MonoBehaviour
 {
     protected bool isInteractionActive;
     [SerializeField] private Collider characterCollider;
-    public BoostGate createdBoostGate;
+    [FormerlySerializedAs("createdBoostGate")] public MultiplierGate createdMultiplierGate;
     
     private void OnEnable()
     {
-        isInteractionActive = true;
+        SetInteractionActivation(true);
     }
 
     protected virtual void OnTriggerEnter(Collider other)
@@ -23,5 +24,6 @@ public class CharacterInteraction : MonoBehaviour
     public void SetInteractionActivation(bool isActive)
     {
         isInteractionActive = isActive;
+        characterCollider.enabled = isActive;
     }
 }

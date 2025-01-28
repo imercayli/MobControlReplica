@@ -8,23 +8,30 @@ using UnityEngine.AI;
 public class CharacterMovement : MonoBehaviour
 {
     protected CharacterBase characterBase;
-    protected NavMeshAgent navMeshAgent;
+    [SerializeField] protected NavMeshAgent navMeshAgent;
     [SerializeField] private float speed;
     private bool isMovementActive;
 
     private void OnEnable()
     {
-       
-        isMovementActive = true;
+        navMeshAgent.speed = speed;
+        SetMovementActivation(true);
         
     }
 
     public void SetTraget(Vector3 target)
     { 
-        navMeshAgent = GetComponent<NavMeshAgent>();
         target.x = transform.position.x;//todo
          navMeshAgent.SetDestination(target);
         GetComponent<CharacterAnimator>().SetBool(AnimationKey.IsWalking,true);
+
+        StartCoroutine(Routine());
+        IEnumerator Routine()
+        {
+            navMeshAgent.speed *= 1.5f;
+            yield return new WaitForSeconds(.2f);
+            navMeshAgent.speed /= 1.5f;
+        }
     }
 
     void Update()
@@ -32,6 +39,13 @@ public class CharacterMovement : MonoBehaviour
        // Move();
       
     }
+
+    // void FixedUpdate()
+    // {
+    //     Vector3 newPosition = GetComponent<Rigidbody>().position + transform.forward * speed * Time.fixedDeltaTime;
+    //     GetComponent<Rigidbody>().MovePosition(newPosition);
+    //     GetComponent<CharacterAnimator>().SetBool(AnimationKey.IsWalking,true);
+    // }
 
     private void Move()
     {
@@ -45,5 +59,6 @@ public class CharacterMovement : MonoBehaviour
     public void SetMovementActivation(bool isActive)
     {
         isMovementActive = isActive;
+         navMeshAgent.enabled = isActive;
     }
 }

@@ -61,6 +61,8 @@ public class CanonMovement : MonoBehaviour
         player.transform.position = playerSpawnPoint.position;
         player.transform.rotation = playerSpawnPoint.rotation;
         player.GetComponent<CharacterMovement>().SetTraget(FindObjectOfType<EnemyFortress>().transform.position);
+        FindObjectOfType<CharacterSpawnSmokeParticleFactory>()
+            .CreateInstance(playerSpawnPoint.position + Vector3.up*1, playerSpawnPoint.rotation);
     }
     
     void AnimateBlendShapesWithOverlap()

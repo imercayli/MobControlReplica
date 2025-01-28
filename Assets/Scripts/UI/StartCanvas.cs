@@ -24,6 +24,6 @@ public class StartCanvas : MonoBehaviour
     }
     private void OnStartButtonTap()
     {
-        GameManager.Instance.StartGame();
+        ServiceSystem.GetService<GameService>().StartGame();
     }
 }

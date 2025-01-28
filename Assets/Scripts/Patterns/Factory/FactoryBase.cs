@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Lean.Pool;
 using UnityEngine;
 
-public abstract class FactoryBase<T> : MonoBehaviour where T: Behaviour
+public abstract class FactoryBase<T> : MonoBehaviour where T: MonoBehaviour
 {
     [SerializeField] protected T prefab;
     

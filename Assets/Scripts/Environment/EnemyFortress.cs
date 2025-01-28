@@ -1,17 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
-public class EnemyFortress : MonoBehaviour
+public class EnemyFortress : CounterBoxObstacle//TODO
 {
     [SerializeField] private int minSpawnAmount, maxSpawnAmount;
-    [SerializeField] private Transform spawnPoint;
     [SerializeField] private float spawnRate;
     private float spawnTimer;
     
-    // Start is called before the first frame update
-    void Start()
+    protected override void Start()
     {
+        base.Start();
         spawnTimer = Time.time + spawnRate;
     }
 
@@ -29,14 +29,17 @@ public class EnemyFortress : MonoBehaviour
 
         for (int i = 0; i < spawnCount; i++)
         {
-           
             Enemy enemy =  FindObjectOfType<EnemiesFactory>()
-                .CreateInstance(EnemyType.Normal,spawnPoint.position, spawnPoint.rotation);
-            enemy.transform.position = spawnPoint.position;
-            enemy.transform.rotation = spawnPoint.rotation;
+                .CreateInstance(EnemyType.Normal,transform.position, transform.rotation);
             enemy.GetComponent<CharacterMovement>().SetTraget(FindObjectOfType<CanonMovement>().transform.position);
         }
 
         spawnTimer = Time.time + spawnRate;
+    }
+
+    protected override void Die()
+    {
+        ServiceSystem.GetService<GameService>().GameOver(true);
+        base.Die();
     }
 }
