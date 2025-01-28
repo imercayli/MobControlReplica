@@ -4,5 +4,5 @@ using UnityEngine;
 
 public interface IEnemyInteractable
 {
-    void Interact(Enemy enemy);
+    void InteractEnemy(Enemy enemy);
 }

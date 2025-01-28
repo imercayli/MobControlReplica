@@ -8,7 +8,7 @@ public class LevelService : BaseService<LevelService>
     public GameObject CurrentLevel { get; private set; }
 
     public List<GameObject> Levels;
-    public NavMeshSurface NavMeshSurface;
+   
     
     public override void Initialize()
     {
@@ -18,12 +18,5 @@ public class LevelService : BaseService<LevelService>
         //     Levels = new List<GameObject>(Resources.LoadAll<GameObject>("Levels"));
         // }
         // GameManager.Instance.OnGameStart += SpawnLevel;
-        //  NavMeshSurface navMeshSurface = levelInstance.GetComponent<NavMeshSurface>();
-        // if (navMeshSurface != null)
-        // {
-        //     // Bake the NavMesh dynamically
-        // }
-       
-        NavMeshSurface.BuildNavMesh();
     }
 }

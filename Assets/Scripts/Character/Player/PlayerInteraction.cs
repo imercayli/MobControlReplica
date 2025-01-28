@@ -6,11 +6,13 @@ public class PlayerInteraction : CharacterInteraction
 {
    protected override void OnTriggerEnter(Collider other)
    {
+      if(!isInteractionActive) return;
+      
       base.OnTriggerEnter(other);
 
       if (other.TryGetComponent(out IPlayerInteractable playerInteractable))
       {
-         playerInteractable.Interact(GetComponent<Player>());
+         playerInteractable.InteractPlayer(characterBase as Player);
       }
    }
 }

@@ -12,20 +12,23 @@ public class CharacterMovement : MonoBehaviour
     [SerializeField] private float speed;
     private bool isMovementActive;
 
-    private void OnEnable()
+    public void Initialize(CharacterBase characterBase)
     {
+        this.characterBase = characterBase;
+        characterBase.OnDie += () => { SetMovementActivation(false); };
         navMeshAgent.speed = speed;
         SetMovementActivation(true);
-        
     }
 
-    public void SetTraget(Vector3 target)
-    { 
-        target.x = transform.position.x;//todo
-         navMeshAgent.SetDestination(target);
-        GetComponent<CharacterAnimator>().SetBool(AnimationKey.IsWalking,true);
+    public void SetTraget(Vector3 target, bool isFaster = true)
+    {
+        target.x = transform.position.x; //todo
+        navMeshAgent.SetDestination(target);
+        GetComponent<CharacterAnimator>().SetBool(AnimationKey.IsWalking, true);
 
+        if (!isFaster) return;
         StartCoroutine(Routine());
+
         IEnumerator Routine()
         {
             navMeshAgent.speed *= 1.5f;
@@ -36,16 +39,15 @@ public class CharacterMovement : MonoBehaviour
 
     void Update()
     {
-       // Move();
-      
+        // Move();
     }
 
-    // void FixedUpdate()
-    // {
-    //     Vector3 newPosition = GetComponent<Rigidbody>().position + transform.forward * speed * Time.fixedDeltaTime;
-    //     GetComponent<Rigidbody>().MovePosition(newPosition);
-    //     GetComponent<CharacterAnimator>().SetBool(AnimationKey.IsWalking,true);
-    // }
+    void FixedUpdate()
+    {
+        // Vector3 newPosition = GetComponent<Rigidbody>().position + transform.forward * speed * Time.fixedDeltaTime;
+        // GetComponent<Rigidbody>().MovePosition(newPosition);
+        // GetComponent<CharacterAnimator>().SetBool(AnimationKey.IsWalking,true);
+    }
 
     private void Move()
     {
@@ -53,12 +55,18 @@ public class CharacterMovement : MonoBehaviour
 
         Vector3 newPos = transform.position + transform.forward;
         transform.position = Vector3.Lerp(transform.position, newPos, Time.deltaTime * speed);
-        GetComponent<CharacterAnimator>().SetBool(AnimationKey.IsWalking,true);
+        GetComponent<CharacterAnimator>().SetBool(AnimationKey.IsWalking, true);
     }
 
     public void SetMovementActivation(bool isActive)
     {
         isMovementActive = isActive;
-         navMeshAgent.enabled = isActive;
+        navMeshAgent.enabled = isActive;
+    }
+
+    private void OnDisable()
+    {
+        if(characterBase)
+         characterBase.OnDie -= () => { SetMovementActivation(false); };
     }
 }

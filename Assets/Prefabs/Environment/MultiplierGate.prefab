@@ -529,8 +529,8 @@ MonoBehaviour:
   calculationAmount: 0
   amountText: {fileID: 8365104536372320567}
   isMoving: 0
-  startX: 0
-  finishX: 0
+  xPositionOffset: 0
+  movementSpeed: 0
 --- !u!65 &8349898546074788556
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -550,8 +550,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 3.0097055, y: 1.38303, z: 1}
-  m_Center: {x: 0, y: -0.19151515, z: 0}
+  m_Size: {x: 3.0097055, y: 1.38303, z: 0.56186676}
+  m_Center: {x: 0, y: -0.19151515, z: 0.3184929}
 --- !u!1 &5323306264986921827
 GameObject:
   m_ObjectHideFlags: 0

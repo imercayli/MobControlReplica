@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 844612280012527392}
   - component: {fileID: 376652904736396930}
   - component: {fileID: 8896495821275284533}
+  - component: {fileID: 9075747246100075376}
   - component: {fileID: 1943636670192404072}
   - component: {fileID: 3527537047116330903}
   - component: {fileID: 8203652301052313243}
@@ -53,6 +54,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deathColor: {r: 0.3490566, g: 0.3490566, b: 0.3490566, a: 1}
+  characterSkinnedMeshRenderer: {fileID: 4380052256387903081}
 --- !u!114 &8896495821275284533
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -67,6 +69,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   navMeshAgent: {fileID: 3571368540715595241}
   speed: 7.5
+--- !u!114 &9075747246100075376
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5687984471000403446}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 083129e3683be4145927f5d85e7bb091, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageAmount: 1
 --- !u!114 &1943636670192404072
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -93,7 +108,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterCollider: {fileID: 7145369924239264362}
-  createdMultiplierGate: {fileID: 0}
 --- !u!114 &8203652301052313243
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -165,7 +179,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 5687984471000403446}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.35
+  m_Radius: 0.2
   m_Speed: 5
   m_Acceleration: 8
   avoidancePriority: 50
@@ -176,8 +190,8 @@ NavMeshAgent:
   m_AutoRepath: 1
   m_Height: 2
   m_BaseOffset: 0
-  m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
+  m_WalkableMask: 23
+  m_ObstacleAvoidanceType: 2
 --- !u!1001 &7924725426901945031
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -378,6 +392,11 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 2780840196290043158}
   m_SourcePrefab: {fileID: 100100000, guid: 0bf003a2b574b1b46986af83df5bb5e6, type: 3}
+--- !u!137 &4380052256387903081 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -3372257567545154386, guid: 0bf003a2b574b1b46986af83df5bb5e6, type: 3}
+  m_PrefabInstance: {fileID: 7924725426901945031}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &7006244326069122966 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 0bf003a2b574b1b46986af83df5bb5e6, type: 3}

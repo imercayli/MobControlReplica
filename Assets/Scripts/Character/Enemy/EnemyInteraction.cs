@@ -4,19 +4,21 @@ using UnityEngine;
 
 public class EnemyInteraction : CharacterInteraction,IPlayerInteractable
 {
-    public void Interact(Player player)
+    public void InteractPlayer(Player player)
     {
-        GetComponent<CharacterHealth>().TakeDamage(1);
-        player.CharacterHealth.TakeDamage(1);
+        characterBase.CharacterHealth.TakeDamage(characterBase.CharacterAttack.DamageAmount);
+        player.CharacterHealth.TakeDamage(player.CharacterAttack.DamageAmount);
     }
 
     protected override void OnTriggerEnter(Collider other)
     {
+        if(!isInteractionActive) return;
+        
         base.OnTriggerEnter(other);
         
         if (other.TryGetComponent(out IEnemyInteractable enemyInteractable))
         {
-            enemyInteractable.Interact(GetComponent<Enemy>());
+            enemyInteractable.InteractEnemy(characterBase as Enemy);
         }
     }
 }

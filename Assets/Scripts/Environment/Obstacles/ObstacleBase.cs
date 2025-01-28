@@ -6,8 +6,8 @@ public abstract class ObstacleBase : MonoBehaviour,IPlayerInteractable
 {
     [SerializeField] private int damageAmount;
     
-    public virtual void Interact(Player player)
+    public virtual void InteractPlayer(Player player)
     {
-        player.GetComponent<CharacterHealth>().TakeDamage(damageAmount);
+        player.CharacterHealth.TakeDamage(damageAmount);
     }
 }

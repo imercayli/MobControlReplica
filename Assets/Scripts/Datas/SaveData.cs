@@ -12,7 +12,7 @@ public static class SaveData
     
     public static int TutorialCount
     {
-        get => PlayerPrefs.GetInt(SaveDataKeys.TutorialCount, -1);
+        get => PlayerPrefs.GetInt(SaveDataKeys.TutorialCount, 0);
         set => PlayerPrefs.SetInt(SaveDataKeys.TutorialCount, value);
     }
 

@@ -7,15 +7,18 @@ using UnityEngine;
 
 public class CharacterHealth : MonoBehaviour
 {
-    private bool isDeath;
-    private float health;
+    protected CharacterBase characterBase;
     [SerializeField] private float maxHealth;
-    private void OnEnable()
+    private float health;
+    private bool isDeath;
+    
+    public void Initialize(CharacterBase characterBase)
     {
+        this.characterBase = characterBase;
         health = maxHealth;
         isDeath = false;
     }
-
+    
     public void TakeDamage(float damageAmount)
     {
         if(isDeath) return;
@@ -30,6 +33,6 @@ public class CharacterHealth : MonoBehaviour
     private void Die()
     {
         isDeath = true;
-        GetComponent<CharacterBase>().Die();
+        characterBase.Die();
     }
 }

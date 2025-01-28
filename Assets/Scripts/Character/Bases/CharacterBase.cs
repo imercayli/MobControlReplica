@@ -8,43 +8,44 @@ using UnityEngine;
 public abstract class CharacterBase : MonoBehaviour
 {
     private CharacterMovement characterMovement;
+    private CharacterAttack characterAttack;
     private CharacterHealth characterHealth;
     private CharacterInteraction characterInteraction;
     private CharacterAnimator characterAnimator;
+
     private Color orjinColor;
     [SerializeField] private Color deathColor;
+    [SerializeField] private SkinnedMeshRenderer characterSkinnedMeshRenderer;
 
     public CharacterMovement CharacterMovement => characterMovement ??= GetComponent<CharacterMovement>();
+    public CharacterAttack CharacterAttack => characterAttack ??= GetComponent<CharacterAttack>();
     public CharacterHealth CharacterHealth => characterHealth ??= GetComponent<CharacterHealth>();
     public CharacterInteraction CharacterInteraction => characterInteraction ??= GetComponent<CharacterInteraction>();
     public CharacterAnimator CharacterAnimator => characterAnimator ??= GetComponent<CharacterAnimator>();
 
     public Action OnDie;
-    private bool isREspawn;
-    
-    protected virtual void Start()
+
+    protected virtual void Awake()
     {
-        orjinColor = GetComponentInChildren<SkinnedMeshRenderer>().material.color;
+        orjinColor = characterSkinnedMeshRenderer.material.color;
     }
 
-    private void OnEnable()
+    protected virtual void OnEnable()
     {
-        if(isREspawn)
-          GetComponentInChildren<SkinnedMeshRenderer>().material.color = orjinColor;
+        CharacterMovement.Initialize(this);
+        CharacterAttack.Initialize(this);
+        CharacterHealth.Initialize(this);
+        CharacterInteraction.Initialize(this);
+        CharacterAnimator.Initialize(this);
+        characterSkinnedMeshRenderer.material.color = orjinColor;
     }
 
     public virtual void Die()
     {
-        isREspawn = true;
-        GetComponentInChildren<SkinnedMeshRenderer>().material.DOColor(deathColor, 1f);
         OnDie?.Invoke();
-        CharacterMovement.SetMovementActivation(false);
-        CharacterInteraction.SetInteractionActivation(false);
         CharacterAnimator.SetTrigger(AnimationKey.Death);
-        transform.DOMoveY(transform.position.y - 2, 3f).SetDelay(1.25f).OnComplete((() =>
-        {
-            LeanPool.Despawn(this);
-        }));
+        characterSkinnedMeshRenderer.material.DOColor(deathColor, 1f);
+        transform.DOMoveY(transform.position.y - 2f, 1f).SetDelay(1f);
+        LeanPool.Despawn(this,2.25f);
     }
-    
 }

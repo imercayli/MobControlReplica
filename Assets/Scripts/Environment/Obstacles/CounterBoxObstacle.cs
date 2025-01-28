@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class CounterBoxObstacle : ObstacleBase
 {
-    [SerializeField] private int boxHealthAmount;
+    [SerializeField] private float boxHealthAmount;
     [SerializeField] private TextMeshPro boxHealthAmountText;
    
     protected virtual void Start()
@@ -18,22 +18,22 @@ public class CounterBoxObstacle : ObstacleBase
         boxHealthAmountText.text = boxHealthAmount.ToString();
     }
 
-    public override void Interact(Player player)
+    public override void InteractPlayer(Player player)
     {
-        base.Interact(player);
-        TakeDamage();
+        base.InteractPlayer(player);
+        TakeDamage(player.CharacterAttack.DamageAmount);
     }
 
-    private void TakeDamage()
+    private void TakeDamage(float damageAmount)
     {
-        boxHealthAmount--;
+        boxHealthAmount -= damageAmount;
         SetHealthText();
         
         if(boxHealthAmount<=0)
-            Die();
+            DestoryBox();
     }
 
-    protected virtual void Die()
+    protected virtual void DestoryBox()
     {
         Destroy(gameObject);
     }
