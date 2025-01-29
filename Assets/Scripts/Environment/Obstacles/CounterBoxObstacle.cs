@@ -10,12 +10,15 @@ public class CounterBoxObstacle : ObstacleBase
     [SerializeField] private TextMeshPro boxHealthAmountText;
     private Vector3 healthAmountTextOrjinScale;
     private Vector3 orjinScale;
+
+    protected SoundService soundService;
    
     protected virtual void Start()
     {
         SetHealthText(false);
         healthAmountTextOrjinScale = boxHealthAmountText.transform.localScale;
         orjinScale = transform.lossyScale;
+        soundService = ServiceSystem.GetService<SoundService>();
     }
 
     private void SetHealthText(bool withAnim =true)
@@ -41,6 +44,7 @@ public class CounterBoxObstacle : ObstacleBase
         boxHealthAmount -= damageAmount;
         SetHealthText();
         Shake();
+        soundService.PlaySound("JellyBounce");
         
         if(boxHealthAmount<=0)
             DestoryBox();
@@ -55,6 +59,7 @@ public class CounterBoxObstacle : ObstacleBase
 
     protected virtual void DestoryBox()
     {
+        //soundService.PlaySound("Crash");
         Destroy(gameObject);
     }
 }

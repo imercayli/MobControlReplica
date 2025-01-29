@@ -42,7 +42,7 @@ public class CharacterInteraction : MonoBehaviour
         if (characterBase)
         {
             characterBase.OnDie -= () => { SetInteractionActivation(false); };
-            characterBase.GameService.OnGameOver += (isSuccess) => { SetInteractionActivation(false); };
+            characterBase.GameService.OnGameOver -= (isSuccess) => { SetInteractionActivation(false); };
         }
     }
 }

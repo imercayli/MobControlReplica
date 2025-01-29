@@ -41,7 +41,7 @@ public class CharacterAnimator : MonoBehaviour
 public struct AnimationKey
 {
     public const string Idle = "Idle";
-    public const string IsWalking = "IsWalking";
+    public const string IsRunning = "IsRunning";
     public const string Death = "Death";
     public const string MovementSpeed = "MovementSpeed";
 }

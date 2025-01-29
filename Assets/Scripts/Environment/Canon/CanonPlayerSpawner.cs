@@ -8,6 +8,7 @@ public class CanonPlayerSpawner : MonoBehaviour
 {
     private InputService inputService;
     private GameService gameService;
+    private SoundService soundService;
     private bool isSpawningActive;
     [SerializeField] private float playerSpawnRate;
     private float playerSpawnTimer;
@@ -22,6 +23,7 @@ public class CanonPlayerSpawner : MonoBehaviour
         SetSpawningActivation(true);
         gameService = ServiceSystem.GetService<GameService>();
         gameService.OnGameOver += (isSuccess) => { SetSpawningActivation(false); };
+        soundService =ServiceSystem.GetService<SoundService>();
     }
 
     void Update()
@@ -75,6 +77,8 @@ public class CanonPlayerSpawner : MonoBehaviour
         player.CharacterMovement.SetTargetForward(EnvironmentManager.Instance.EnemyFortress.transform.position,true);
         ServiceSystem.GetService<CharacterSpawnSmokeParticleFactory>()
             .CreateInstance(playerSpawnPoint.position + Vector3.up * 1, playerSpawnPoint.rotation);
+        
+        soundService.PlaySound("PlayerSpawn");
     }
 
     public void SetSpawningActivation(bool isActive)

@@ -41,6 +41,8 @@ public abstract class CharacterBase : MonoBehaviour
         CharacterInteraction.Initialize(this);
         CharacterAnimator.Initialize(this);
         characterSkinnedMeshRenderer.material.color = orjinColor;
+        if(GameService.IsGameOver && this is Player)
+            gameObject.SetActive(false);
     }
 
     public virtual void Die()

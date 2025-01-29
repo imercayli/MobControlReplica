@@ -39,7 +39,16 @@ public class EnemyFortress : CounterBoxObstacle
     // Update is called once per frame
     void Update()
     {
-        SpawnEnemies();
+       SpawnEnemies();
+    }
+
+    public float sex;
+    [Button]
+    public void Imer()
+    {
+        Vector3 spawnPosition = spawnPoint.position + Vector3.right * sex;
+        Enemy enemy =  ServiceSystem.GetService<EnemiesFactory>()
+            .CreateInstance( EnemyType.Normal,spawnPosition, spawnPoint.transform.rotation);
     }
 
     protected void SetAnimationCurve()
@@ -62,8 +71,9 @@ public class EnemyFortress : CounterBoxObstacle
         for (int i = 0; i < totalSpawnCount; i++)
         {
             bool isGiant = totalEnemyCount >= giantFirstApperanceValue && totalEnemyCount % giantSpawnRate == 0;
+            Vector3 spawnPosition = spawnPoint.position + Vector3.right * Random.Range(-2f, 1f);
             Enemy enemy =  ServiceSystem.GetService<EnemiesFactory>()
-                .CreateInstance(isGiant ? EnemyType.Giant : EnemyType.Normal,spawnPoint.transform.position, spawnPoint.transform.rotation);
+                .CreateInstance(isGiant ? EnemyType.Giant : EnemyType.Normal,spawnPosition, spawnPoint.transform.rotation);
             enemy.CharacterMovement.SetTargetForward(EnvironmentManager.Instance.Canon.transform.position);
             totalEnemyCount++;
         }

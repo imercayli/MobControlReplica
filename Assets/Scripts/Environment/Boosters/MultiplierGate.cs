@@ -18,10 +18,12 @@ public class MultiplierGate : MonoBehaviour,IPlayerInteractable
     [SerializeField] private float xPositionOffset,movementSpeed;
 
     private GameService gameService;
+    private SoundService soundService;
     
     void Start()
     {
         gameService = ServiceSystem.GetService<GameService>();
+        soundService = ServiceSystem.GetService<SoundService>();
         SetAmountText();
         Move();
     }
@@ -75,5 +77,7 @@ public class MultiplierGate : MonoBehaviour,IPlayerInteractable
             ServiceSystem.GetService<CharacterSpawnSmokeParticleFactory>()
                 .CreateInstance(player.transform.position, player.transform.rotation);
         }
+        
+       // soundService.PlaySound("MultiplierBoost");
     }
 }

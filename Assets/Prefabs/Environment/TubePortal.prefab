@@ -1478,15 +1478,13 @@ GameObject:
   - component: {fileID: 3576986401649266007}
   - component: {fileID: 4430215144589302570}
   - component: {fileID: 3632654541840888992}
-  - component: {fileID: 4753359766873969881}
-  - component: {fileID: 335018089379583254}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &3576986401649266007
 Transform:
   m_ObjectHideFlags: 0
@@ -1496,8 +1494,8 @@ Transform:
   m_GameObject: {fileID: 7074165998236345803}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0, z: 29.129}
-  m_LocalScale: {x: 1, y: 1, z: 38.541195}
+  m_LocalPosition: {x: 0.3955, y: 0, z: 29.129}
+  m_LocalScale: {x: 0.6729726, y: 1, z: 38.541195}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5782843589237681938}
@@ -1552,43 +1550,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &4753359766873969881
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7074165998236345803}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!208 &335018089379583254
-NavMeshObstacle:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7074165998236345803}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Shape: 1
-  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
-  m_MoveThreshold: 0.1
-  m_Carve: 1
-  m_CarveOnlyStationary: 1
-  m_Center: {x: 0, y: 0, z: 0}
-  m_TimeToStationary: 0.5
 --- !u!1 &7460040468759526187
 GameObject:
   m_ObjectHideFlags: 0
@@ -1631,7 +1592,7 @@ GameObject:
   - component: {fileID: 5782843589237681938}
   - component: {fileID: 539805272278775613}
   - component: {fileID: 2478895731848437572}
-  - component: {fileID: 4052941738201982099}
+  - component: {fileID: 1230254460630045713}
   m_Layer: 6
   m_Name: TubePortal
   m_TagString: Untagged
@@ -5581,8 +5542,8 @@ MonoBehaviour:
   exitPoint: {fileID: 5126808798225200462}
   enterPointMesh: {fileID: 289276151276085876}
   teleportTime: 2
---- !u!65 &4052941738201982099
-BoxCollider:
+--- !u!135 &1230254460630045713
+SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -5600,7 +5561,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 2}
+  m_Radius: 0.5
   m_Center: {x: 0, y: 1.47, z: 0}
 --- !u!1 &8805371443497994017
 GameObject:

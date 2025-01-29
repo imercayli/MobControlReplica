@@ -12,7 +12,8 @@ public class CharacterMovement : MonoBehaviour
     [SerializeField] protected NavMeshAgent navMeshAgent;
     [SerializeField] private float speed;
     private bool isMovementActive;
-   
+    private GameService gameService;
+    private SoundService soundService;
 
     public void Initialize(CharacterBase characterBase)
     {
@@ -21,6 +22,14 @@ public class CharacterMovement : MonoBehaviour
         this.characterBase.GameService.OnGameOver += (isSuccess) => { SetMovementActivation(false); };
         navMeshAgent.speed = speed;
         SetMovementActivation(true);
+        gameService = ServiceSystem.GetService<GameService>();
+        soundService =ServiceSystem.GetService<SoundService>();
+    }
+
+    private void Update()
+    {
+        if(gameService.IsGameOver)
+            SetMovementActivation(false);//TODO
     }
 
     public void SetTargetForward(Vector3 target, bool isFaster = false)
@@ -32,8 +41,14 @@ public class CharacterMovement : MonoBehaviour
     
     public void SetTarget(Vector3 target, bool isFaster = false)
     {
-        navMeshAgent.SetDestination(target);
-        characterBase.CharacterAnimator.SetBool(AnimationKey.IsWalking, true);
+        if (!navMeshAgent.enabled || !navMeshAgent.isOnNavMesh) return;
+        
+         navMeshAgent.SetDestination(target);
+        characterBase.CharacterAnimator.SetBool(AnimationKey.IsRunning, true);
+
+        if (!gameService.IsGameOver)
+            soundService.PlaySound("CharacterRun");
+            
 
         if (isFaster)
         {
@@ -52,7 +67,7 @@ public class CharacterMovement : MonoBehaviour
     {
         isMovementActive = isActive;
         navMeshAgent.enabled = isActive;
-        characterBase.CharacterAnimator.SetBool(AnimationKey.IsWalking, isActive);
+        characterBase.CharacterAnimator.SetBool(AnimationKey.IsRunning, isActive);
     }
 
     private void OnDisable()
@@ -60,7 +75,7 @@ public class CharacterMovement : MonoBehaviour
         if (characterBase)
         {
             characterBase.OnDie -= () => { SetMovementActivation(false); };
-            characterBase.GameService.OnGameOver += (isSuccess) => { SetMovementActivation(false); };
+            characterBase.GameService.OnGameOver -= (isSuccess) => { SetMovementActivation(false); };
         }
        
     }

@@ -22,15 +22,16 @@ public static class SaveData
         set => PlayerPrefs.SetInt(SaveDataKeys.DayCount, value);
     }
 
-    public static Action<bool> OnHapticValueChanged;
     public static bool IsHapticOn
     {
         get => PlayerPrefs.GetInt(SaveDataKeys.HapticOn, 1) == 1;
-        set
-        {
-            PlayerPrefs.SetInt(SaveDataKeys.HapticOn, value ? 1 : 0);
-            OnHapticValueChanged?.Invoke(value);
-        }
+        set =>  PlayerPrefs.SetInt(SaveDataKeys.HapticOn, value ? 1 : 0);
+    }
+    
+    public static bool IsSoundOn
+    {
+        get => PlayerPrefs.GetInt(SaveDataKeys.IsSoundOn, 1) == 1;
+        set => PlayerPrefs.SetInt(SaveDataKeys.IsSoundOn, value ? 1 : 0);
     }
 }
 
@@ -40,4 +41,5 @@ public struct SaveDataKeys
     public const string DayCount = "DayCount";
     public const string HapticOn = "HapticOn";
     public const string TutorialCount = "TutorialCount";
+    public const string IsSoundOn = "IsSoundOn";
 }
