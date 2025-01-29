@@ -6,7 +6,9 @@ using Lean.Pool;
 using UnityEngine;
 
 public abstract class CharacterBase : MonoBehaviour
-{
+{ 
+    private GameService gameService;
+    
     private CharacterMovement characterMovement;
     private CharacterAttack characterAttack;
     private CharacterHealth characterHealth;
@@ -17,6 +19,7 @@ public abstract class CharacterBase : MonoBehaviour
     [SerializeField] private Color deathColor;
     [SerializeField] private SkinnedMeshRenderer characterSkinnedMeshRenderer;
 
+    public GameService GameService => gameService ??= ServiceSystem.GetService<GameService>();
     public CharacterMovement CharacterMovement => characterMovement ??= GetComponent<CharacterMovement>();
     public CharacterAttack CharacterAttack => characterAttack ??= GetComponent<CharacterAttack>();
     public CharacterHealth CharacterHealth => characterHealth ??= GetComponent<CharacterHealth>();
@@ -44,8 +47,11 @@ public abstract class CharacterBase : MonoBehaviour
     {
         OnDie?.Invoke();
         CharacterAnimator.SetTrigger(AnimationKey.Death);
-        characterSkinnedMeshRenderer.material.DOColor(deathColor, 1f);
-        transform.DOMoveY(transform.position.y - 2f, 1f).SetDelay(1f);
-        LeanPool.Despawn(this,2.25f);
+        characterSkinnedMeshRenderer.material.DOColor(deathColor, .2f);
+        transform.DOMoveY(transform.position.y - 1f, 1.5f).OnComplete((() =>
+        {
+            LeanPool.Despawn(this);
+        }));
+       
     }
 }

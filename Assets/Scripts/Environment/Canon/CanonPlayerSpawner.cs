@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
@@ -6,6 +7,7 @@ using UnityEngine;
 public class CanonPlayerSpawner : MonoBehaviour
 {
     private InputService inputService;
+    private GameService gameService;
     private bool isSpawningActive;
     [SerializeField] private float playerSpawnRate;
     private float playerSpawnTimer;
@@ -18,6 +20,8 @@ public class CanonPlayerSpawner : MonoBehaviour
     {
         inputService = ServiceSystem.GetService<InputService>();
         SetSpawningActivation(true);
+        gameService = ServiceSystem.GetService<GameService>();
+        gameService.OnGameOver += (isSuccess) => { SetSpawningActivation(false); };
     }
 
     void Update()
@@ -68,7 +72,7 @@ public class CanonPlayerSpawner : MonoBehaviour
     {
         Player player = ServiceSystem.GetService<PlayerFactory>()
             .CreateInstance(playerSpawnPoint.position, playerSpawnPoint.rotation);
-        player.CharacterMovement.SetTraget(EnvironmentManager.Instance.EnemyFortress.transform.position);
+        player.CharacterMovement.SetTargetForward(EnvironmentManager.Instance.EnemyFortress.transform.position,true);
         ServiceSystem.GetService<CharacterSpawnSmokeParticleFactory>()
             .CreateInstance(playerSpawnPoint.position + Vector3.up * 1, playerSpawnPoint.rotation);
     }
@@ -76,5 +80,10 @@ public class CanonPlayerSpawner : MonoBehaviour
     public void SetSpawningActivation(bool isActive)
     {
         isSpawningActive = isActive;
+    }
+
+    private void OnDestroy()
+    {
+        gameService.OnGameOver -= (isSuccess) => { SetSpawningActivation(false); };
     }
 }

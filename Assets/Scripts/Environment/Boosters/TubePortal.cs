@@ -29,6 +29,9 @@ public class TubePortal : MonoBehaviour,IPlayerInteractable
                 player.gameObject.SetActive(false);
             }));
             yield return new WaitForSeconds(teleportTime);
+            
+            if(ServiceSystem.GetService<GameService>().IsGameOver) yield break;//TODO
+            
             player.gameObject.SetActive(true);
             player.transform.position = exitPoint.position;
             player.transform.rotation = exitPoint.rotation;

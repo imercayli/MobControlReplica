@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class CanonMovement : MonoBehaviour
 {
+    private GameService gameService;
     private InputService inputService; 
     private bool isMovementActive;
     [SerializeField] private Transform canonObject;
@@ -20,6 +21,8 @@ public class CanonMovement : MonoBehaviour
         inputService = ServiceSystem.GetService<InputService>();
         inputService.OnTouchDeltaPositionChanged += Move;
         SetMovementActivation(true);
+        gameService = ServiceSystem.GetService<GameService>();
+        gameService.OnGameOver += (isSuccess) => { SetMovementActivation(false); };
     }
 
     private void Move(Vector2 touchDelta)
@@ -49,5 +52,10 @@ public class CanonMovement : MonoBehaviour
     public void SetMovementActivation(bool isActive)
     {
         isMovementActive = isActive;
+    }
+    
+    private void OnDestroy()
+    {
+        gameService.OnGameOver -= (isSuccess) => { SetMovementActivation(false); };
     }
 }

@@ -74,11 +74,37 @@ MonoBehaviour:
   boxHealthAmount: 30
   boxHealthAmountText: {fileID: 7300113480116090571}
   spawnPoint: {fileID: 7271984572157036329}
-  minSpawnAmount: 5
-  maxSpawnAmount: 10
-  spawnRate: 3
-  giantFirstSpawnLimit: 100
-  giantSpawnRate: 30
+  spawnRateAnimationCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: -3.2902732
+      outSlope: -3.2902732
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.03386643
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  minSpawnRate: 3
+  maxSpawnRate: 0.5
+  maxSpawnRateReachValue: 5
+  minSpawnAmount: 10
+  maxSpawnAmount: 15
+  giantFirstApperanceValue: 100
+  giantSpawnRate: 25
 --- !u!1 &899104263428669063
 GameObject:
   m_ObjectHideFlags: 0
@@ -106,7 +132,7 @@ Transform:
   m_GameObject: {fileID: 899104263428669063}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.053, y: 0.085, z: 0.303}
+  m_LocalPosition: {x: 0, y: 0.085, z: 0.46}
   m_LocalScale: {x: 0.56, y: 0.30359, z: 0.1625}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -256,7 +282,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8099670810834414446}
   m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
-  m_LocalPosition: {x: 0, y: 0, z: 1.6492314}
+  m_LocalPosition: {x: 0, y: 0, z: 0.8}
   m_LocalScale: {x: 1.7857141, y: 3.2939162, z: 6.153846}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -426,7 +452,7 @@ Transform:
   m_GameObject: {fileID: 9124300417716288443}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.459}
+  m_LocalPosition: {x: 0, y: 0, z: -0.061}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -454,7 +480,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ff600fa1f4b1e426b9b54cd339f120cd, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.0665669
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ff600fa1f4b1e426b9b54cd339f120cd, type: 3}
       propertyPath: m_LocalPosition.y
@@ -462,7 +488,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ff600fa1f4b1e426b9b54cd339f120cd, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.14948949
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ff600fa1f4b1e426b9b54cd339f120cd, type: 3}
       propertyPath: m_LocalRotation.w

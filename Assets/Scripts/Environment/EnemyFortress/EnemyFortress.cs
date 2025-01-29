@@ -1,27 +1,39 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Sirenix.OdinInspector;
 using TMPro;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class EnemyFortress : CounterBoxObstacle
 {
+    private GameService gameService;
     private bool isSpawningActive;
+
     [SerializeField] private Transform spawnPoint;
-    [SerializeField] private int minSpawnAmount, maxSpawnAmount;
-    [SerializeField] private float spawnRate;
+    [Header("Spawn Rate")]
+    [SerializeField] private AnimationCurve spawnRateAnimationCurve;
+    [SerializeField] private float minSpawnRate, maxSpawnRate;
+    [SerializeField] private int maxSpawnRateReachValue;
+
+    [Header("Spawn Amount")]
+    [SerializeField] private int minSpawnAmount;
+    [SerializeField] private int maxSpawnAmount;
+    
     private float spawnTimer;
+    private int totalEnemyCount,totalSpawnGroupCount;
 
     [BoxGroup("Giant Spawn Info")] 
-    [SerializeField] private int giantFirstSpawnLimit, giantSpawnRate;
-    
-    private int totalEnemySpawnCount;
+    [SerializeField] private int giantFirstApperanceValue, giantSpawnRate;
     
     protected override void Start()
     {
         base.Start();
-        spawnTimer = Time.time + spawnRate;
+        SetAnimationCurve();
         SetSpawningActivation(true);
+        gameService = ServiceSystem.GetService<GameService>();
+        gameService.OnGameOver += (isSuccess) => { SetSpawningActivation(false); };
     }
 
     // Update is called once per frame
@@ -30,23 +42,40 @@ public class EnemyFortress : CounterBoxObstacle
         SpawnEnemies();
     }
 
+    protected void SetAnimationCurve()
+    {
+        Keyframe[] keys = new[]
+        {
+            new Keyframe(0f, minSpawnRate),
+            new Keyframe(1f, maxSpawnRate)
+        };
+
+        spawnRateAnimationCurve.keys = keys;
+    }
+
     private void SpawnEnemies()
     {
         if(!isSpawningActive || spawnTimer>Time.time) return;
 
-        int spawnCount = Random.Range(minSpawnAmount, maxSpawnAmount + 1);
-
-        for (int i = 0; i < spawnCount; i++)
+        int totalSpawnCount = Random.Range(minSpawnAmount, maxSpawnAmount + 1);
+        
+        for (int i = 0; i < totalSpawnCount; i++)
         {
-            bool isGiant = totalEnemySpawnCount >= giantFirstSpawnLimit && totalEnemySpawnCount % giantSpawnRate == 0;
+            bool isGiant = totalEnemyCount >= giantFirstApperanceValue && totalEnemyCount % giantSpawnRate == 0;
             Enemy enemy =  ServiceSystem.GetService<EnemiesFactory>()
                 .CreateInstance(isGiant ? EnemyType.Giant : EnemyType.Normal,spawnPoint.transform.position, spawnPoint.transform.rotation);
-            enemy.CharacterMovement.SetTraget(EnvironmentManager.Instance.Canon.transform.position);
-            totalEnemySpawnCount++;
+            enemy.CharacterMovement.SetTargetForward(EnvironmentManager.Instance.Canon.transform.position);
+            totalEnemyCount++;
         }
+        
+        spawnTimer = Time.time + GetSpawnRate();
+        totalSpawnGroupCount++;
+    }
 
-      
-        spawnTimer = Time.time + spawnRate;
+    private float GetSpawnRate()
+    {
+        float t = Mathf.InverseLerp(0, maxSpawnRateReachValue, totalSpawnGroupCount);
+        return spawnRateAnimationCurve.Evaluate(t);
     }
 
     protected override void DestoryBox()
@@ -58,5 +87,10 @@ public class EnemyFortress : CounterBoxObstacle
     public void SetSpawningActivation(bool isActive)
     {
         isSpawningActive = isActive;
+    }
+
+    private void OnDestroy()
+    {
+        gameService.OnGameOver -= (isSuccess) => { SetSpawningActivation(false); };
     }
 }

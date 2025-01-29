@@ -8,12 +8,14 @@ public class CounterBoxObstacle : ObstacleBase
 {
     [SerializeField] private float boxHealthAmount;
     [SerializeField] private TextMeshPro boxHealthAmountText;
-    protected Vector3 healthAmountTextOrjinScale;
+    private Vector3 healthAmountTextOrjinScale;
+    private Vector3 orjinScale;
    
     protected virtual void Start()
     {
         SetHealthText(false);
         healthAmountTextOrjinScale = boxHealthAmountText.transform.localScale;
+        orjinScale = transform.lossyScale;
     }
 
     private void SetHealthText(bool withAnim =true)
@@ -38,10 +40,18 @@ public class CounterBoxObstacle : ObstacleBase
     {
         boxHealthAmount -= damageAmount;
         SetHealthText();
+        Shake();
         
         if(boxHealthAmount<=0)
             DestoryBox();
     }
+
+    private void Shake()
+    {
+        transform.DOKill();
+        transform.localScale = orjinScale;
+        transform.DOShakeScale(0.1f, 1);
+    } 
 
     protected virtual void DestoryBox()
     {

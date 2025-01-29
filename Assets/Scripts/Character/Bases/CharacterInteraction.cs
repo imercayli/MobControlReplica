@@ -16,6 +16,7 @@ public class CharacterInteraction : MonoBehaviour
     {
         this.characterBase = characterBase;
         this.characterBase.OnDie += () => { SetInteractionActivation(false); };
+        this.characterBase.GameService.OnGameOver += (isSuccess) => { SetInteractionActivation(false); };
         SetInteractionActivation(true);
         CreatedMultiplierGate = null;
     }
@@ -38,7 +39,10 @@ public class CharacterInteraction : MonoBehaviour
 
     private void OnDisable()
     {
-        if(characterBase)
-          characterBase.OnDie -= () => { SetInteractionActivation(false); };
+        if (characterBase)
+        {
+            characterBase.OnDie -= () => { SetInteractionActivation(false); };
+            characterBase.GameService.OnGameOver += (isSuccess) => { SetInteractionActivation(false); };
+        }
     }
 }

@@ -22,7 +22,7 @@ public class PlayerTrapContainerObstacle : CounterBoxObstacle
          Player newPlayer = ServiceSystem.GetService<PlayerFactory>()
             .CreateInstance(targetPosition, transform.rotation);
          newPlayer.CharacterMovement.
-            SetTraget(EnvironmentManager.Instance.EnemyFortress.transform.position);
+            SetTargetForward(EnvironmentManager.Instance.EnemyFortress.transform.position,true);
       }
    }
 }

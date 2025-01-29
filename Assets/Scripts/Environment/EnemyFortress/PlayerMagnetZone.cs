@@ -10,7 +10,6 @@ public class PlayerMagnetZone : MonoBehaviour,IPlayerInteractable
     
     public void InteractPlayer(Player player)
     {
-        player.GetComponent<NavMeshAgent>().SetDestination(enemyFortress.transform.position);//TODO
-        player.CharacterAnimator.SetBool(AnimationKey.IsWalking,true);
+        player.CharacterMovement.SetTarget(enemyFortress.transform.position);
     }
 }

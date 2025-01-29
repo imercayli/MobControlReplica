@@ -16,10 +16,12 @@ public class MultiplierGate : MonoBehaviour,IPlayerInteractable
     [SerializeField] private bool isMoving;
     [ShowIf("isMoving")]
     [SerializeField] private float xPositionOffset,movementSpeed;
-    
+
+    private GameService gameService;
     
     void Start()
     {
+        gameService = ServiceSystem.GetService<GameService>();
         SetAmountText();
         Move();
     }
@@ -56,6 +58,8 @@ public class MultiplierGate : MonoBehaviour,IPlayerInteractable
     public void InteractPlayer(Player player)
     {
         if(player.CharacterInteraction.CreatedMultiplierGate == this) return;
+        
+        if(gameService.IsGameOver) return;
 
         amountText.transform.DOKill();
         amountText.transform.localScale = amountTextOrjinScale;
@@ -66,37 +70,10 @@ public class MultiplierGate : MonoBehaviour,IPlayerInteractable
             Player newPlayer = ServiceSystem.GetService<PlayerFactory>()
                 .CreateInstance(player.transform.position, player.transform.rotation);
             newPlayer.CharacterMovement.
-                SetTraget(EnvironmentManager.Instance.EnemyFortress.transform.position,false);
+                SetTargetForward(EnvironmentManager.Instance.EnemyFortress.transform.position);
             newPlayer.CharacterInteraction.SetMultiplierGate(this);
             ServiceSystem.GetService<CharacterSpawnSmokeParticleFactory>()
                 .CreateInstance(player.transform.position, player.transform.rotation);
-
-            //TODO
-            StartCoroutine(Routine());
-            IEnumerator Routine()
-            {
-                // player.GetComponent<NavMeshAgent>().obstacleAvoidanceType = ObstacleAvoidanceType.NoObstacleAvoidance;
-                // var nav = newPlayer.GetComponent<NavMeshAgent>();
-                // nav.obstacleAvoidanceType = ObstacleAvoidanceType.NoObstacleAvoidance;
-                //
-                // yield return new WaitForSeconds(2f);
-                // nav.obstacleAvoidanceType = ObstacleAvoidanceType.MedQualityObstacleAvoidance;
-                // player.GetComponent<NavMeshAgent>().obstacleAvoidanceType = ObstacleAvoidanceType.MedQualityObstacleAvoidance;
-
-                player.GetComponent<NavMeshAgent>().enabled = false;
-                newPlayer.GetComponent<NavMeshAgent>().enabled = false;
-                player.transform.DOMove(player.transform.position + player.transform.forward * 1f + transform.right * -.2f,
-                    0.1f);
-                newPlayer.transform.DOMove(newPlayer.transform.position + newPlayer.transform.forward * 1f + transform.right * .2f,
-                    0.1f);
-                yield return new WaitForSeconds(0.1f);
-                player.GetComponent<NavMeshAgent>().enabled = true;
-                newPlayer.GetComponent<NavMeshAgent>().enabled = true;
-                player.CharacterMovement.
-                    SetTraget(FindObjectOfType<EnemyFortress>().transform.position);
-                newPlayer.CharacterMovement.
-                    SetTraget(FindObjectOfType<EnemyFortress>().transform.position);
-            }
         }
     }
 }
