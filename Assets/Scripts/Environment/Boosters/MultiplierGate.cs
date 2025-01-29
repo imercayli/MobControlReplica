@@ -12,6 +12,7 @@ public class MultiplierGate : MonoBehaviour,IPlayerInteractable
     [SerializeField] private CalculationType calculationType;
     [SerializeField] private int calculationAmount;
     [SerializeField] private TextMeshPro amountText;
+    private Vector3 amountTextOrjinScale;
     [SerializeField] private bool isMoving;
     [ShowIf("isMoving")]
     [SerializeField] private float xPositionOffset,movementSpeed;
@@ -38,6 +39,7 @@ public class MultiplierGate : MonoBehaviour,IPlayerInteractable
         };
 
         amountText.text = $"{operationSymbol}{calculationAmount}";
+        amountTextOrjinScale = amountText.transform.localScale;
     }
 
     private void Move()
@@ -54,6 +56,10 @@ public class MultiplierGate : MonoBehaviour,IPlayerInteractable
     public void InteractPlayer(Player player)
     {
         if(player.CharacterInteraction.CreatedMultiplierGate == this) return;
+
+        amountText.transform.DOKill();
+        amountText.transform.localScale = amountTextOrjinScale;
+        amountText.transform.DOPunchScale(Vector3.one*0.1f, .2f);
 
         for (int i = 0; i < calculationAmount-1; i++)
         {

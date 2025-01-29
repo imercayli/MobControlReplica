@@ -16,8 +16,11 @@ public class PlayerTrapContainerObstacle : CounterBoxObstacle
    {
       for (int i = 0; i < trapPlayerCount; i++)
       {
+         float radius = 4f;
+         Vector3 targetPosition = transform.position + Random.insideUnitSphere * radius;
+         targetPosition.y = transform.position.y;
          Player newPlayer = ServiceSystem.GetService<PlayerFactory>()
-            .CreateInstance(transform.position, transform.rotation);
+            .CreateInstance(targetPosition, transform.rotation);
          newPlayer.CharacterMovement.
             SetTraget(EnvironmentManager.Instance.EnemyFortress.transform.position);
       }

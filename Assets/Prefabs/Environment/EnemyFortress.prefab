@@ -34,6 +34,7 @@ Transform:
   - {fileID: 1032654076057881872}
   - {fileID: 3260924463191731933}
   - {fileID: 7096423195337206733}
+  - {fileID: 7271984572157036329}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!65 &4734786736454810912
@@ -72,9 +73,12 @@ MonoBehaviour:
   damageAmount: 1
   boxHealthAmount: 30
   boxHealthAmountText: {fileID: 7300113480116090571}
+  spawnPoint: {fileID: 7271984572157036329}
   minSpawnAmount: 5
   maxSpawnAmount: 10
   spawnRate: 3
+  giantFirstSpawnLimit: 100
+  giantSpawnRate: 30
 --- !u!1 &899104263428669063
 GameObject:
   m_ObjectHideFlags: 0
@@ -397,6 +401,37 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_renderer: {fileID: 5238369651248568018}
   m_maskType: 0
+--- !u!1 &9124300417716288443
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7271984572157036329}
+  m_Layer: 6
+  m_Name: SpawnPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7271984572157036329
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9124300417716288443}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0.459}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4795616695455613595}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &711005878378523387
 PrefabInstance:
   m_ObjectHideFlags: 0
