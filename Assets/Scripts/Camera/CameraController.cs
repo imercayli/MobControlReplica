@@ -11,7 +11,7 @@ public class CameraController : MonoBehaviour
 
     private void Start()
     {
-        SwitchToMainCamera();
+       // SwitchToMainCamera();
     }
 
     private void SwitchToMainCamera()

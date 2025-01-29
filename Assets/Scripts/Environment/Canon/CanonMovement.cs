@@ -14,6 +14,8 @@ public class CanonMovement : MonoBehaviour
     [SerializeField] private float xSideLimit;
     [SerializeField] private Transform[] wheels;
     [SerializeField] private float wheelRotationSpeed = 100f;
+
+    public Transform CanonObject => canonObject;
   
     // Start is called before the first frame update
     void Start()

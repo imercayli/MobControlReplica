@@ -7,11 +7,14 @@ using UnityEngine;
 public class EnvironmentManager : MonoSingleton<EnvironmentManager>
 {
     [SerializeField] private NavMeshSurface navMeshSurface;
-    [SerializeField] private CanonMovement canon;
+    [SerializeField] private CanonLevelController canonLevelController;
     [SerializeField] private EnemyFortress enemyFortress;
 
-    public CanonMovement Canon => canon;
+    public CanonLevelController CanonLevelController => canonLevelController;
+    public CanonMovement Canon => canonLevelController.CurrentCanon;
     public EnemyFortress EnemyFortress => enemyFortress;
+    
+    
     
     protected override void Awake()
     {
