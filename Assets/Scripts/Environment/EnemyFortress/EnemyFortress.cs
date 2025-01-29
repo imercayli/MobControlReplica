@@ -42,15 +42,6 @@ public class EnemyFortress : CounterBoxObstacle
        SpawnEnemies();
     }
 
-    public float sex;
-    [Button]
-    public void Imer()
-    {
-        Vector3 spawnPosition = spawnPoint.position + Vector3.right * sex;
-        Enemy enemy =  ServiceSystem.GetService<EnemiesFactory>()
-            .CreateInstance( EnemyType.Normal,spawnPosition, spawnPoint.transform.rotation);
-    }
-
     protected void SetAnimationCurve()
     {
         Keyframe[] keys = new[]
