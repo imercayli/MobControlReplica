@@ -3389,7 +3389,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4658157226061385604, guid: f474264b89d344612b51d0f4b96c1472, type: 3}
       propertyPath: minSpawnRate
-      value: 0.9
+      value: 1.1
       objectReference: {fileID: 0}
     - target: {fileID: 4658157226061385604, guid: f474264b89d344612b51d0f4b96c1472, type: 3}
       propertyPath: giantSpawnRate

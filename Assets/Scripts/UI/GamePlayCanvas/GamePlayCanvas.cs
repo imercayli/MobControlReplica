@@ -44,7 +44,7 @@ public class GamePlayCanvas : MonoBehaviour
         StartCoroutine(Routine());
         IEnumerator Routine()
         {
-            float delayTime = 10f;
+            float delayTime = 7f;
             yield return new WaitForSeconds(delayTime);
             helpUsBalloon.SetActive(true);
             helpUsBalloon.transform.DOScale(1, 0.5f).From(0);
