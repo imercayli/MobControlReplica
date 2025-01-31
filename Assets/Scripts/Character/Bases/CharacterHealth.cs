@@ -10,7 +10,7 @@ public class CharacterHealth : MonoBehaviour
     protected CharacterBase characterBase;
     [SerializeField] private float maxHealth;
     private float health;
-    private bool isDeath;
+    private bool isDeath,isImmune;
     
     public void Initialize(CharacterBase characterBase)
     {
@@ -21,7 +21,7 @@ public class CharacterHealth : MonoBehaviour
     
     public void TakeDamage(float damageAmount)
     {
-        if(isDeath) return;
+        if(isDeath || isImmune) return;
         
         health -= damageAmount;
         if (health <= 0)
@@ -34,5 +34,10 @@ public class CharacterHealth : MonoBehaviour
     {
         isDeath = true;
         characterBase.Die();
+    }
+
+    public void SetImmune(bool isImmune)
+    {
+        this.isImmune = isImmune;
     }
 }

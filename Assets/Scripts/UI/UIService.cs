@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UIManager : BaseService<UIManager>
+public class UIService : BaseService<UIService>
 {
     [SerializeField] private GameOverCanvas gameOverCanvas;
 
