@@ -10,6 +10,7 @@ public class CounterBoxObstacle : ObstacleBase
     [SerializeField] private TextMeshPro boxHealthAmountText;
     private Vector3 healthAmountTextOrjinScale;
     private Vector3 orjinScale;
+    [SerializeField] private bool isShaking = true;
 
     protected SoundService soundService;
    
@@ -52,6 +53,8 @@ public class CounterBoxObstacle : ObstacleBase
 
     private void Shake()
     {
+        if(!isShaking) return;
+        
         transform.DOKill();
         transform.localScale = orjinScale;
         transform.DOShakeScale(0.1f, 1);

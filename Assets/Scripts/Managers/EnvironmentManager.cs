@@ -7,11 +7,10 @@ using UnityEngine;
 public class EnvironmentManager : MonoSingleton<EnvironmentManager>
 {
     [SerializeField] private NavMeshSurface navMeshSurface;
-    [SerializeField] private CanonLevelController canonLevelController;
+    [SerializeField] private Canon canon;
     [SerializeField] private EnemyFortress enemyFortress;
 
-    public CanonLevelController CanonLevelController => canonLevelController;
-    public CanonMovement Canon => canonLevelController.CurrentCanon;
+    public Canon Canon => canon;
     public EnemyFortress EnemyFortress => enemyFortress;
     
     
@@ -19,6 +18,6 @@ public class EnvironmentManager : MonoSingleton<EnvironmentManager>
     protected override void Awake()
     {
         base.Awake();
-        navMeshSurface.BuildNavMesh();
+      //  navMeshSurface.BuildNavMesh();
     }
 }

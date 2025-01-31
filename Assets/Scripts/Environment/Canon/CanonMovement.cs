@@ -9,13 +9,11 @@ public class CanonMovement : MonoBehaviour
     private GameService gameService;
     private InputService inputService; 
     private bool isMovementActive;
-    [SerializeField] private Transform canonObject;
     [SerializeField] private float xMovementSpeed;
     [SerializeField] private float xSideLimit;
     [SerializeField] private Transform[] wheels;
     [SerializeField] private float wheelRotationSpeed = 100f;
 
-    public Transform CanonObject => canonObject;
   
     // Start is called before the first frame update
     void Start()
@@ -33,11 +31,11 @@ public class CanonMovement : MonoBehaviour
         
         var movementDelta =  touchDelta.x * xMovementSpeed * Vector3.right *Time.deltaTime;
 
-        var finalPosition = canonObject.localPosition + movementDelta;
+        var finalPosition = transform.position + movementDelta;
 
         finalPosition.x = Mathf.Clamp(finalPosition.x, -xSideLimit, xSideLimit);
 
-        canonObject.localPosition = finalPosition;
+        transform.position = finalPosition;
 
         RotateWheels(movementDelta.x);
     }

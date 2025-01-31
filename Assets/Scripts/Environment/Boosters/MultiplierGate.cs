@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using DG.Tweening;
 using Sirenix.OdinInspector;
 using TMPro;
@@ -67,6 +68,7 @@ public class MultiplierGate : MonoBehaviour,IPlayerInteractable
         amountText.transform.localScale = amountTextOrjinScale;
         amountText.transform.DOPunchScale(Vector3.one*0.1f, .2f);
 
+        var xPositions = GenerateXPositions(calculationAmount);
         for (int i = 0; i < calculationAmount-1; i++)
         {
             Player newPlayer = ServiceSystem.GetService<PlayerFactory>()
@@ -76,8 +78,25 @@ public class MultiplierGate : MonoBehaviour,IPlayerInteractable
             newPlayer.CharacterInteraction.SetMultiplierGate(this);
             ServiceSystem.GetService<CharacterSpawnSmokeParticleFactory>()
                 .CreateInstance(player.transform.position, player.transform.rotation);
+            newPlayer.CharacterMovement.SetXOffset(xPositions[i]);
         }
-        
+        player.CharacterMovement.SetXOffset(xPositions.Last());
        // soundService.PlaySound("MultiplierBoost");
+    }
+    
+    private List<int> GenerateXPositions(int playerCount)
+    {
+        List<int> positions = new List<int>();
+
+        int start = -(playerCount / 2); 
+        int end = playerCount / 2;
+
+        for (int i = start; i <= end; i++)
+        {
+            if (playerCount % 2 == 0 && i == 0) continue;
+            positions.Add(i);
+        }
+
+        return positions;
     }
 }

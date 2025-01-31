@@ -27,6 +27,14 @@ namespace Extentions
             return new Vector2(canvasSize.x * (viewPortPosition.x - .5f), canvasSize.y * (viewPortPosition.y - .5f));
         }
 
+        public static Vector2 WorldToCanvasPosition(this Vector3 worldPosition, Camera camera, Canvas canvas)
+        {
+            Vector2 viewportPosition=camera.WorldToViewportPoint(worldPosition);
+            RectTransform canvasRect = canvas.GetComponent<RectTransform>();
+            return  new Vector2(((viewportPosition.x*canvasRect.sizeDelta.x)-(canvasRect.sizeDelta.x*0.5f)),
+                ((viewportPosition.y*canvasRect.sizeDelta.y)-(canvasRect.sizeDelta.y*0.5f)));
+        }
+
         public static Vector2 Rotate(this Vector2 v, float degrees)
         {
             var radians = degrees * Mathf.Deg2Rad;

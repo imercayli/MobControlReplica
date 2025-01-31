@@ -73,6 +73,7 @@ MonoBehaviour:
   damageAmount: 1
   boxHealthAmount: 30
   boxHealthAmountText: {fileID: 7300113480116090571}
+  isShaking: 1
   spawnPoint: {fileID: 7271984572157036329}
   spawnRateAnimationCurve:
     serializedVersion: 2
@@ -452,7 +453,7 @@ Transform:
   m_GameObject: {fileID: 9124300417716288443}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.061}
+  m_LocalPosition: {x: 0, y: 0.062, z: 0.592}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

@@ -6,8 +6,8 @@ public class EnemyInteraction : CharacterInteraction,IPlayerInteractable
 {
     public void InteractPlayer(Player player)
     {
-        characterBase.CharacterHealth.TakeDamage(characterBase.CharacterAttack.DamageAmount);
-        player.CharacterHealth.TakeDamage(player.CharacterAttack.DamageAmount);
+        characterBase.CharacterHealth.TakeDamage(player.CharacterAttack.DamageAmount);
+        player.CharacterHealth.TakeDamage(characterBase.CharacterAttack.DamageAmount);
     }
 
     protected override void OnTriggerEnter(Collider other)

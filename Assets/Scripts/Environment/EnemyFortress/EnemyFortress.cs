@@ -56,13 +56,15 @@ public class EnemyFortress : CounterBoxObstacle
     private void SpawnEnemies()
     {
         if(!isSpawningActive || spawnTimer>Time.time) return;
-
+        
         int totalSpawnCount = Random.Range(minSpawnAmount, maxSpawnAmount + 1);
         
         for (int i = 0; i < totalSpawnCount; i++)
         {
             bool isGiant = totalEnemyCount >= giantFirstApperanceValue && totalEnemyCount % giantSpawnRate == 0;
-            Vector3 spawnPosition = spawnPoint.position;
+            Vector3 random= Vector3.right * Random.Range(-3f, 3f) +
+                            Vector3.forward * Random.Range(-2f, 2f);
+            Vector3 spawnPosition = spawnPoint.position + random;
             Enemy enemy =  ServiceSystem.GetService<EnemiesFactory>()
                 .CreateInstance(isGiant ? EnemyType.Giant : EnemyType.Normal,spawnPosition, spawnPoint.transform.rotation);
             enemy.CharacterMovement.SetTargetForward(EnvironmentManager.Instance.Canon.transform.position);

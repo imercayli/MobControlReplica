@@ -9,8 +9,9 @@ public class CanonPlayerSpawner : MonoBehaviour
     private InputService inputService;
     private GameService gameService;
     private SoundService soundService;
+    private Canon canon;
     private bool isSpawningActive;
-    [SerializeField] private float playerSpawnRate;
+    [SerializeField] private List<float> playerSpawnRatesInLevels;
     private float playerSpawnTimer;
     [SerializeField] private Transform playerSpawnPoint;
     [SerializeField] private SkinnedMeshRenderer skinnedMeshRenderer;
@@ -24,6 +25,7 @@ public class CanonPlayerSpawner : MonoBehaviour
         gameService = ServiceSystem.GetService<GameService>();
         gameService.OnGameOver += (isSuccess) => { SetSpawningActivation(false); };
         soundService =ServiceSystem.GetService<SoundService>();
+        canon = GetComponentInParent<Canon>();
     }
 
     void Update()
@@ -38,7 +40,7 @@ public class CanonPlayerSpawner : MonoBehaviour
         if (Time.time < playerSpawnTimer) return;
 
         AnimateBlendShapesWithOverlap();
-        playerSpawnTimer = Time.time + playerSpawnRate;
+        playerSpawnTimer = Time.time + playerSpawnRatesInLevels[canon.LevelIndex];
     }
 
     void AnimateBlendShapesWithOverlap()

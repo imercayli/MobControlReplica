@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3151896af9da84d20bc519e16c23b591, type: 3}
+  m_Name: Background
+  m_EditorClassIdentifier: 
+  key: Background
+  audioClip: {fileID: 8300000, guid: ef81e5d4fc8a04769bbecb140e87d25d, type: 3}
+  interval: 0
+  isLoop: 1
+  isPlayOnAwake: 1
+  volume: 0.379
+  pitch: 0.88

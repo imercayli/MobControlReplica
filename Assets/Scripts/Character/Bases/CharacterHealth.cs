@@ -8,9 +8,9 @@ using UnityEngine;
 public class CharacterHealth : MonoBehaviour
 {
     protected CharacterBase characterBase;
-    [SerializeField] private float maxHealth;
-    private float health;
-    private bool isDeath;
+    [SerializeField] protected float maxHealth;
+    protected float health;
+    protected bool isDeath,isImmune;
     
     public void Initialize(CharacterBase characterBase)
     {
@@ -19,9 +19,9 @@ public class CharacterHealth : MonoBehaviour
         isDeath = false;
     }
     
-    public void TakeDamage(float damageAmount)
+    public virtual void TakeDamage(float damageAmount)
     {
-        if(isDeath) return;
+        if(isDeath || isImmune) return;
         
         health -= damageAmount;
         if (health <= 0)
@@ -34,5 +34,10 @@ public class CharacterHealth : MonoBehaviour
     {
         isDeath = true;
         characterBase.Die();
+    }
+
+    public void SetImmune(bool isImmuneActive)
+    {
+        isImmune = isImmune;
     }
 }

@@ -44,5 +44,6 @@ public struct AnimationKey
     public const string IsRunning = "IsRunning";
     public const string Death = "Death";
     public const string MovementSpeed = "MovementSpeed";
+    public const string AskHelp = "AskHelp";
 }
 
